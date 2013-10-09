@@ -14,14 +14,11 @@
 
 	<mvc:annotation-driven />
 
-	<bean id="appconfig"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="locations">
-			<list>
-				<value>/WEB-INF/config/appconfig.properties</value>
-			</list>
-		</property>
-	</bean>
+
+	<context:property-placeholder
+		location="/WEB-INF/config/private.properties, /WEB-INF/config/appconfig.properties"
+		ignore-unresolvable="true" />
+
 
 	<!-- Define how Views should be looked up when their name is returned by 
 		the controllers -->

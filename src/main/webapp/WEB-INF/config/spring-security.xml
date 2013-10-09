@@ -10,9 +10,9 @@
 	<http use-expressions="true" auto-config="true">
 		<intercept-url pattern="/web/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<form-login login-processing-url="/web/login"
-			always-use-default-target="false" login-page="${baseurl}/loginp"
-			authentication-success-handler-ref="authenticationSuccessHandler"
-			default-target-url="${baseurl}" authentication-failure-handler-ref="authenticationFailureHandler" />
+	always-use-default-target="false" login-page="${baseurl}/loginp"
+	authentication-success-handler-ref="authenticationSuccessHandler"
+	default-target-url="${baseurl}" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<logout invalidate-session="true" logout-success-url="${baseurl}"
 			logout-url="/web/logout" />
 	</http>

@@ -30,8 +30,20 @@
 	<!-- Scan for annotations: -->
 	<context:component-scan base-package="gr.bytecode.services.visitorphonebook" />
 
-	<context:property-placeholder location="/WEB-INF/config/appconfig.properties" />
+	<!-- Load app configuration (use within beans only) -->
+	<bean id="appconfig"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/appconfig.properties</value>
+			</list>
+		</property>
+	</bean>
 
+	<!-- Load additional configuration properties (use inside config xmls only) -->
+	<context:property-placeholder
+		location="/WEB-INF/config/appconfig.properties, /WEB-INF/config/private.properties"
+		ignore-unresolvable="true" />
 
 	<!-- Include CXF own configs: -->
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
@@ -114,10 +126,10 @@
 	<!-- Mail Configuration -->
 	<!-- SET default mail properties -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="mail.bytecode.gr" />
-		<property name="port" value="25" />
-		<property name="username" value="dbalaouras@bytecode.gr" />
-		<property name="password" value="password" />
+		<property name="host" value="${mail.smtp.server.host}" />
+		<property name="port" value="${mail.smtp.server.port}" />
+		<property name="username" value="${mail.sender.address}" />
+		<property name="password" value="${mail.sender.password}" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
