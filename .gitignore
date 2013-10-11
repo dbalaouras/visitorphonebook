@@ -35,13 +35,16 @@ proguard-project.txt
 dist/
 tmp
 
-# Gradle
+#Gradle
 .gradle
 /build
 /out
 
 #Spring
 .springBeans
+
+#Test
+test-output
 
 #Private properties
 private.properties

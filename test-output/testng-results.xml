@@ -2,31 +2,31 @@
 <testng-results skipped="0" failed="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="236" started-at="2013-09-23T22:10:00Z" finished-at="2013-09-23T22:10:01Z">
+  <suite name="Default suite" duration-ms="236" started-at="2013-10-11T18:52:59Z" finished-at="2013-10-11T18:53:00Z">
     <groups>
       <group name="business">
-        <method signature="BackOfficeServiceTest.createNewOrganizationInvalidData()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="createNewOrganizationInvalidData" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
-        <method signature="BackOfficeServiceTest.createNewOrganizationWithExistingEntity()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="createNewOrganizationWithExistingEntity" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
-        <method signature="BackOfficeServiceTest.getCategories()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="getCategories" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
-        <method signature="BackOfficeServiceTest.saveOrganizationCategory()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="saveOrganizationCategory" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
+        <method signature="BackOfficeServiceTest.createNewEntryInvalidData()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="createNewEntryInvalidData" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
+        <method signature="BackOfficeServiceTest.createNewEntryWithExistingEntity()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="createNewEntryWithExistingEntity" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
+        <method signature="BackOfficeServiceTest.getCategories()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="getCategories" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
+        <method signature="BackOfficeServiceTest.saveEntryCategory()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="saveEntryCategory" class="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest"/>
       </group> <!-- business -->
     </groups>
-    <test name="Default test" duration-ms="236" started-at="2013-09-23T22:10:00Z" finished-at="2013-09-23T22:10:01Z">
+    <test name="Default test" duration-ms="236" started-at="2013-10-11T18:52:59Z" finished-at="2013-10-11T18:53:00Z">
       <class name="gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="setUp" is-config="true" duration-ms="208" started-at="2013-09-24T01:10:00Z" finished-at="2013-09-24T01:10:01Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="setUp" is-config="true" duration-ms="207" started-at="2013-10-11T21:52:59Z" finished-at="2013-10-11T21:53:00Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="createNewOrganizationInvalidData()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="createNewOrganizationInvalidData" duration-ms="5" started-at="2013-09-24T01:10:01Z" finished-at="2013-09-24T01:10:01Z">
+        <test-method status="PASS" signature="createNewEntryInvalidData()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="createNewEntryInvalidData" duration-ms="5" started-at="2013-10-11T21:53:00Z" finished-at="2013-10-11T21:53:00Z">
           <exception class="gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException">
             <message>
               <![CDATA[Mock String]]>
             </message>
             <full-stacktrace>
               <![CDATA[gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException: Mock String
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.validateOrganization(BackOfficeService.java:292)
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.createNewOrganization(BackOfficeService.java:105)
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest.createNewOrganizationInvalidData(BackOfficeServiceTest.java:94)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.validateEntry(BackOfficeService.java:332)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.createNewEntry(BackOfficeService.java:119)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest.createNewEntryInvalidData(BackOfficeServiceTest.java:93)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -56,17 +56,17 @@
           </exception> <!-- gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createNewOrganizationInvalidData -->
-        <test-method status="PASS" signature="createNewOrganizationWithExistingEntity()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="createNewOrganizationWithExistingEntity" duration-ms="2" started-at="2013-09-24T01:10:01Z" finished-at="2013-09-24T01:10:01Z">
+        </test-method> <!-- createNewEntryInvalidData -->
+        <test-method status="PASS" signature="createNewEntryWithExistingEntity()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="createNewEntryWithExistingEntity" duration-ms="2" started-at="2013-10-11T21:53:00Z" finished-at="2013-10-11T21:53:00Z">
           <exception class="gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException">
             <message>
               <![CDATA[Mock String]]>
             </message>
             <full-stacktrace>
               <![CDATA[gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException: Mock String
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.validateOrganization(BackOfficeService.java:328)
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.createNewOrganization(BackOfficeService.java:105)
-	at gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest.createNewOrganizationWithExistingEntity(BackOfficeServiceTest.java:127)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.validateEntry(BackOfficeService.java:367)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeService.createNewEntry(BackOfficeService.java:119)
+	at gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest.createNewEntryWithExistingEntity(BackOfficeServiceTest.java:125)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
@@ -96,15 +96,15 @@
           </exception> <!-- gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createNewOrganizationWithExistingEntity -->
-        <test-method status="PASS" signature="getCategories()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="getCategories" duration-ms="3" started-at="2013-09-24T01:10:01Z" finished-at="2013-09-24T01:10:01Z">
+        </test-method> <!-- createNewEntryWithExistingEntity -->
+        <test-method status="PASS" signature="getCategories()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="getCategories" duration-ms="4" started-at="2013-10-11T21:53:00Z" finished-at="2013-10-11T21:53:00Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getCategories -->
-        <test-method status="PASS" signature="saveOrganizationCategory()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@5117f31e]" name="saveOrganizationCategory" duration-ms="0" started-at="2013-09-24T01:10:01Z" finished-at="2013-09-24T01:10:01Z">
+        <test-method status="PASS" signature="saveEntryCategory()[pri:0, instance:gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest@4839e5b5]" name="saveEntryCategory" duration-ms="0" started-at="2013-10-11T21:53:00Z" finished-at="2013-10-11T21:53:00Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- saveOrganizationCategory -->
+        </test-method> <!-- saveEntryCategory -->
       </class> <!-- gr.bytecode.services.visitorphonebook.services.BackOfficeServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
