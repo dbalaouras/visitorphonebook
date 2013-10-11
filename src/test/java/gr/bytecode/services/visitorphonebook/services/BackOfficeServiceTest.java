@@ -30,14 +30,14 @@ import org.testng.annotations.Test;
 public class BackOfficeServiceTest {
 
 	/**
-	 * Repository of organization categories
+	 * Repository of entry categories
 	 */
-	private IEntryCategoryRepository organizationCategoryRepository;
+	private IEntryCategoryRepository entryCategoryRepository;
 
 	/**
-	 * Repository of organization organizations
+	 * Repository of entries
 	 */
-	private IEntryRepository organizationRepository;
+	private IEntryRepository entryRepository;
 
 	/**
 	 * The tested object
@@ -51,10 +51,10 @@ public class BackOfficeServiceTest {
 	public void setUp() {
 
 		// mock the repositories
-		organizationCategoryRepository = mock(EntryCategoryRepository.class);
-		organizationRepository = mock(EntryRepository.class);
-		EntryCategories organizationCategories = mock(EntryCategories.class);
-		EntryCategory organizationCategory = mock(EntryCategory.class);
+		entryCategoryRepository = mock(EntryCategoryRepository.class);
+		entryRepository = mock(EntryRepository.class);
+		EntryCategories entryCategories = mock(EntryCategories.class);
+		EntryCategory entryCategory = mock(EntryCategory.class);
 
 		// mock the message loader
 		MessageLoader messageLoader = mock(MessageLoader.class);
@@ -63,21 +63,20 @@ public class BackOfficeServiceTest {
 
 		// prepare the EntryCategories mock
 		List<EntryCategory> categoriesList = new ArrayList<EntryCategory>();
-		categoriesList.add(organizationCategory);
-		when(organizationCategories.getCategories()).thenReturn(categoriesList);
+		categoriesList.add(entryCategory);
+		when(entryCategories.getCategories()).thenReturn(categoriesList);
 
 		// setup the EntryCategoryRepository mock
-		when(organizationCategoryRepository.getCategories(true)).thenReturn(
-				organizationCategories);
+		when(entryCategoryRepository.getCategories(true)).thenReturn(
+				entryCategories);
 
 		// instantiate the back office service
 		backOfficeService = new BackOfficeService();
 
 		// set the repositories to the backoffice service
-		backOfficeService
-				.setEntryCategoryRepository(organizationCategoryRepository);
+		backOfficeService.setEntryCategoryRepository(entryCategoryRepository);
 
-		backOfficeService.setEntryRepository(organizationRepository);
+		backOfficeService.setEntryRepository(entryRepository);
 
 		backOfficeService.setMessageLoader(messageLoader);
 	}
@@ -88,11 +87,11 @@ public class BackOfficeServiceTest {
 	 * 
 	 */
 	@Test(expectedExceptions = InvalidDataException.class)
-	public void createNewEntryInvalidData()
-			throws EntityExistsException, InvalidDataException {
+	public void createNewEntryInvalidData() throws EntityExistsException,
+			InvalidDataException {
 
-		backOfficeService.createNewEntry(null, null, null, null, null,
-				null, null, null);
+		backOfficeService.createNewEntry(null, null, null, null, null, null,
+				null, null);
 	}
 
 	/**
@@ -108,19 +107,18 @@ public class BackOfficeServiceTest {
 		String orgName = "dimi";
 		Long id = 1L;
 
-		// prepare the saved organization category
+		// prepare the saved entry category
 		EntryCategory savedEntryCategory = new EntryCategory();
 		savedEntryCategory.setId(id);
 
-		// prepare the saved organization
+		// prepare the saved entry
 		Entry savedEntry = new Entry();
 		savedEntry.setId(id);
 		savedEntry.setEntryCategory(savedEntryCategory);
 
 		// setup the mocks
-		when(organizationRepository.findEntryByName(orgName))
-				.thenReturn(savedEntry);
-		when(organizationCategoryRepository.findEntityById(id)).thenReturn(
+		when(entryRepository.findEntryByName(orgName)).thenReturn(savedEntry);
+		when(entryCategoryRepository.findEntityById(id)).thenReturn(
 				savedEntryCategory);
 
 		// now run it
@@ -134,11 +132,11 @@ public class BackOfficeServiceTest {
 	@Test
 	public void getCategories() {
 
-		EntryCategories categories = organizationCategoryRepository
+		EntryCategories categories = entryCategoryRepository
 				.getCategories(true);
-		List<EntryCategory> organizations = categories.getCategories();
+		List<EntryCategory> entries = categories.getCategories();
 
-		Assert.assertEquals(organizations.size(), 1);
+		Assert.assertEquals(entries.size(), 1);
 	}
 
 	/**

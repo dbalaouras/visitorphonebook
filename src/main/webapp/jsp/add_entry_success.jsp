@@ -1,7 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<c:set var="current_page" value="add_organization" scope="request" />
+<c:set var="current_page" value="add_entry" scope="request" />
 <jsp:include page="header.jsp" />
 <div class="container">
 	<div style="margin-top: 20px">

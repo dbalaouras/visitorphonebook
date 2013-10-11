@@ -35,7 +35,7 @@ public class EntriesRS {
 	BackOfficeService backOfficeService;
 
 	@Autowired
-	IEntryRepository organizationRepository;
+	IEntryRepository entryRepository;
 
 	/**
 	 * @param name
@@ -60,20 +60,20 @@ public class EntriesRS {
 			@QueryParam("website") String website, @Context HttpHeaders headers)
 			throws EntityExistsException, InvalidDataException {
 
-		// create a new organization
-		Entry organization = new Entry();
+		// create a new entry
+		Entry entry = new Entry();
 
 		CallResponse<Long> response = new CallResponse<Long>(0,
 				"Organizaton created: " + name, 0L);
 
-		organization = backOfficeService.createNewEntry(name, categoryId,
+		entry = backOfficeService.createNewEntry(name, categoryId,
 				telephoneNumber, email, latitude, longitude, streetAddress,
 				website);
 
 		// save the entity
-		response.setData(organization.getId());
+		response.setData(entry.getId());
 
-		response.setMessage("New organization saved");
+		response.setMessage("New entry saved");
 
 		return response;
 	}
@@ -90,13 +90,12 @@ public class EntriesRS {
 			throw new InvalidDataException("category Id is mandatory");
 		}
 
-		Entries organizations = organizationRepository
-				.getEntries(categoryId, 2);
+		Entries entries = entryRepository.getEntries(categoryId, 2);
 
 		CallResponse<Entries> response = new CallResponse<Entries>(0,
-				"Organizaton found: " + organizations.size(), organizations);
+				"Entry found: " + entries.size(), entries);
 
-		response.setMessage("Organizaton found: " + organizations.size());
+		response.setMessage("Entry found: " + entries.size());
 
 		return response;
 	}

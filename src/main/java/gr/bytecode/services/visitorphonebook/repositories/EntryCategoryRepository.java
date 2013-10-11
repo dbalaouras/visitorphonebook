@@ -41,7 +41,7 @@ public class EntryCategoryRepository extends BaseRepository<EntryCategory>
 	 */
 	public EntryCategories getCategories(boolean useCache) {
 
-		// get a list of the organizations
+		// get a list of the entries
 		Query queryAllCategories = em
 				.createNamedQuery("EntryCategory.findAllCategories");
 
@@ -67,7 +67,7 @@ public class EntryCategoryRepository extends BaseRepository<EntryCategory>
 	@Override
 	public EntryCategory findCategoryByName(String name, boolean useCache) {
 
-		// get a list of the organizations
+		// get a list of the entries
 		Query query = em.createNamedQuery("EntryCategory.findCategoryByName")
 				.setParameter("categoryName", name);
 
@@ -88,7 +88,7 @@ public class EntryCategoryRepository extends BaseRepository<EntryCategory>
 	@Override
 	public List<EntryCategory> getCategoryList(boolean useCache) {
 
-		// get a list of the organizations
+		// get a list of the entries
 		Query query = em
 				.createNamedQuery("EntryCategory.findAllCategoriesNames");
 

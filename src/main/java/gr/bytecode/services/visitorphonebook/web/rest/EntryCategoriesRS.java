@@ -27,7 +27,7 @@ public class EntryCategoriesRS {
 	private EntityManager em;
 
 	@Autowired
-	IEntryCategoryRepository organizationCategoryRepository;
+	IEntryCategoryRepository entryCategoryRepository;
 
 	/**
 	 * @return
@@ -36,7 +36,7 @@ public class EntryCategoriesRS {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public CallResponse<EntryCategories> getCategories() {
 
-		EntryCategories categories = organizationCategoryRepository
+		EntryCategories categories = entryCategoryRepository
 				.getCategories(true);
 
 		CallResponse<EntryCategories> response = new CallResponse<EntryCategories>(

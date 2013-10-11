@@ -70,10 +70,6 @@ body>.navbar {
 	padding: 5px 20px 60px;
 }
 
-#organization_list {
-	margin-top: -60px;
-}
-
 #inner_container {
 	background: none repeat scroll 0 0 #FCFCFC;
 	box-shadow: 0 0 40px rgba(0, 0, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0.1);
@@ -85,6 +81,16 @@ body>.navbar {
 
 .margin-top {
 	margin-top: 20px;
+}
+
+#promote-twitter {
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+#menu-language {
+	margin-left: 20px;
+	margin-top: 9px;
 }
 
 .footer {
@@ -212,7 +218,7 @@ h2 {
 	padding: 50px 0 0 0;
 }
 
-#bytecode_footer {
+#developer_info {
 	padding: 0px 10px 20px 10px;
 }
 
@@ -330,6 +336,12 @@ footer a:hover {
 	.span12,.container {
 		width: 95%;
 	}
+	#menu-language {
+		margin-left: 150px;
+	}
+	#promote-twitter {
+		margin-left: 40px;
+	}
 }
 
 @media ( min-width : 980px) and (max-width: 1199px) {
@@ -341,6 +353,12 @@ footer a:hover {
 	}
 	.span12,.container {
 		width: 95%;
+	}
+	#menu-language {
+		margin-left: 10px;
+	}
+	#promote-twitter {
+		margin-left: 40px;
 	}
 }
 
@@ -358,6 +376,12 @@ footer a:hover {
 		margin-right: 130px;
 		margin-top: 20px;
 	}
+	#menu-language {
+		margin-left: 10px;
+	}
+	#promote-twitter {
+		margin-left: 10px;
+	}
 }
 
 @media ( min-width : 980px) {
@@ -373,6 +397,12 @@ footer a:hover {
 	#twitter-menu-btn {
 		margin-right: 110px;
 		margin-top: 20px;
+	}
+	#menu-language {
+		margin-left: 10px;
+	}
+	#promote-twitter {
+		margin-left: 10px;
 	}
 }
 

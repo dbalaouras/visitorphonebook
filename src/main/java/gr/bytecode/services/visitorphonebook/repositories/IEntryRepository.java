@@ -12,21 +12,21 @@ import gr.bytecode.services.visitorphonebook.model.Entries;
 public interface IEntryRepository extends IRepository<Entry> {
 
 	/**
-	 * Find an organization given it's name
+	 * Find an entry given it's name
 	 * 
 	 * @return
 	 */
 	public abstract Entry findEntryByName(String name);
 
 	/**
-	 * Find an organization given it's name
+	 * Find an entry given it's name
 	 * 
 	 * @return
 	 */
 	public abstract Entry findEntryByName(String name, int status);
 
 	/**
-	 * Get all organizations of a category
+	 * Get all entries of a category
 	 * 
 	 * @return
 	 */

@@ -14,43 +14,43 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @Copyright ByteCode.gr 2013
  * 
  */
-@XmlRootElement(name = "organizations")
+@XmlRootElement(name = "entries")
 public class Entries {
 
 	/**
-	 * A list of organizations
+	 * A list of entries
 	 */
-	private List<Entry> organizations;
+	private List<Entry> entries;
 
 	/**
 	 * 
 	 */
 	public Entries() {
 		super();
-		this.organizations = new ArrayList<Entry>();
+		this.entries = new ArrayList<Entry>();
 	}
 
 	/**
-	 * @param organizations
+	 * @param entries
 	 */
-	public Entries(List<Entry> organizations) {
+	public Entries(List<Entry> entries) {
 		super();
-		this.organizations = organizations;
+		this.entries = entries;
 	}
 
 	/**
 	 * @return
 	 */
-	@XmlElement(name = "organization")
+	@XmlElement(name = "entry")
 	public List<Entry> getEntries() {
-		return organizations;
+		return entries;
 	}
 
 	/**
-	 * @param organizations
+	 * @param entries
 	 */
-	public void setEntries(List<Entry> organizations) {
-		this.organizations = organizations;
+	public void setEntries(List<Entry> entries) {
+		this.entries = entries;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class Entries {
 	 * @return
 	 */
 	public int size() {
-		return organizations == null ? 0 : organizations.size();
+		return entries == null ? 0 : entries.size();
 	}
 
 }

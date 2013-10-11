@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -13,11 +15,23 @@
 <c:set var="linkedin_url" scope="request">
 	<spring:message code="app.linkedin_url" />
 </c:set>
+<c:set var="developer_name" scope="request">
+	<spring:message code="app.developer_name" />
+</c:set>
+<c:set var="developer_shortname" scope="request">
+	<spring:message code="app.developer_shortname" />
+</c:set>
+<c:set var="developer_url" scope="request">
+	<spring:message code="app.developer_url" />
+</c:set>
+
 
 </div>
 <!-- End inner container -->
+
 </div>
 <!-- End Main container -->
+
 <!-- FOOTER  -->
 <footer class="footer">
 	<!-- SOCIAL MODULE  -->
@@ -45,16 +59,17 @@
 	<!-- END SOCIAL MODULE  -->
 
 	<!-- COPYRIGHT  -->
-	<div class="container" id="bytecode_footer">
+	<div class="container" id="developer_info">
 		<div class="row">
 			<div class="span center">
-				<img alt="ByteCode" src="assets/img/bytecode_logo_small.png">
+				<a href="${developer_url}" target="_blank"><img
+					alt="${developer_shortname}" src="assets/img/logo_small.png"></a>
 			</div>
 			<div class="">
 				<p class="copyright text-right center">
 					<a href="#aboutBox" data-keyboard="true" data-toggle="modal"><spring:message
-							code="menu.about" /></a> | &copy; 2013
-					<spring:message code="app.creator_name" />
+							code="menu.about" /></a> | &copy; 2013 <a href="${developer_url}"
+						target="_blank">${developer_name}</a>
 				</p>
 			</div>
 		</div>

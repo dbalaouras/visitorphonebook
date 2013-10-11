@@ -66,7 +66,7 @@ public class BackOfficeController {
 		return "admin/home";
 	}
 
-	// *************** ORGANIZATIONS
+	// *************** ENTRIES
 
 	/**
 	 * @param session

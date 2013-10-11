@@ -102,7 +102,7 @@ public class MainSiteController {
 	}
 
 	/**
-	 * Presents the Phonebook as a list of entrys and their data
+	 * Presents the Phonebook as a list of entries and their data
 	 * 
 	 * @param session
 	 * @param model

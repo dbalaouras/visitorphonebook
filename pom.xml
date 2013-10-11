@@ -27,6 +27,7 @@
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<spring.security.version>3.1.0.RELEASE</spring.security.version>
 		<javax.mail.version>1.4</javax.mail.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 

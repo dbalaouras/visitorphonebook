@@ -1,9 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+
+<c:set var="available_languages" value="${fn:split(appconfig['available_languages'], ',')}"
+	scope="application" />
+	
+<c:set var="developer_name" scope="request">
+	<spring:message code="app.developer_name" />
+</c:set>
+<c:set var="developer_shortname" scope="request">
+	<spring:message code="app.developer_shortname" />
+</c:set>
+<c:set var="developer_url" scope="request">
+	<spring:message code="app.developer_url" />
+</c:set>
+<c:set var="twitter_share_hashtags" scope="request">
+	<spring:message code="app.share.twitter.hashtags" />
+</c:set>
+<c:set var="twitter_share_via" scope="request">
+	<spring:message code="app.share.twitter.via" />
+</c:set>
+
 
 <c:choose>
 	<c:when test="${current_page eq \"list_entries\"}">
@@ -17,7 +38,6 @@
 <c:set var="retweet_message" scope="request">
 	<spring:message code="app.retweet_message" />
 </c:set>
-
 
 <c:choose>
 	<c:when test="${ not empty appconfig['baseurl']}">
@@ -84,7 +104,6 @@ src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
 
 </head>
 <body ${body_extra}>
-
 	<div class="navbar navbar-inverse
 navbar-fixed-top">
 		<div class="navbar-inner">
@@ -176,15 +195,34 @@ null}">
 							</c:otherwise>
 						</c:choose>
 
+						<li>
+							<div class="btn-group" id="menu-language">
+								<button data-toggle="dropdown"
+									class="btn  btn-mini btn-primary dropdown-toggle">
+									<spring:message code="language.${pageContext.response.locale}" />
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+
+									<c:forEach var="lang" items="${available_languages}">
+										<li><a
+											href="?language=${lang}&d=1"><spring:message
+													code="language.${lang}" /></a></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<div id="promote-twitter">
+								<a href="https://twitter.com/share" class="twitter-share-button"
+									data-url="${developer_url}" data-text="${retweet_message}"
+									data-via="${twitter_share_via}"
+									data-related="${twitter_share_via}"
+									data-hashtags="${twitter_share_hashtags}"><spring:message
+										code="social.tweet" /></a>
+							</div>
+						</li>
 					</ul>
-					<div></div>
-					<div class="pull-right" id="twitter-menu-btn">
-						<a href="https://twitter.com/share" class="twitter-share-button"
-							data-url="http://greecephonebook.gr"
-							data-text="${retweet_message}" data-via="dbalaouras"
-							data-related="dbalaouras" data-hashtags="greecephonebook"><spring:message
-								code="social.tweet" /></a>
-					</div>
 				</div>
 			</div>
 		</div>

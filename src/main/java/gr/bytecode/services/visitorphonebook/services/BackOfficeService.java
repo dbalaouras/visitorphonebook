@@ -365,7 +365,7 @@ public class BackOfficeService {
 							.getEntryCategory().getId()) {
 
 				throw new EntityExistsException(messageLoader.getString(
-						"BackOfficeService.ERR_ORGANIZATION_EXISTS", null)); //$NON-NLS-1$
+						"BackOfficeService.ERR_ENTRY_EXISTS", null)); //$NON-NLS-1$
 			}
 
 		}
@@ -438,12 +438,12 @@ public class BackOfficeService {
 	/**
 	 * Enables an entry given it's it
 	 * 
-	 * @param organizationId
+	 * @param entryId
 	 * @throws InvalidDataExceptions
 	 */
 	@Transactional
-	public void activateEntry(Long organizationId) throws InvalidDataException {
-		updateEntryStatus(organizationId, 2);
+	public void activateEntry(Long entryId) throws InvalidDataException {
+		updateEntryStatus(entryId, 2);
 	}
 
 	/**
@@ -483,10 +483,8 @@ public class BackOfficeService {
 			entryRepository.updateEntity(savedEntry);
 
 		} else {
-			throw new InvalidDataException(
-					messageLoader
-							.getString(
-									"BackOfficeService.ERR_NO_ORGANIZATION_FOUND", new String[] {})); //$NON-NLS-1$
+			throw new InvalidDataException(messageLoader.getString(
+					"BackOfficeService.ERR_NO_ENTRY_FOUND", new String[] {})); //$NON-NLS-1$
 		}
 
 	}

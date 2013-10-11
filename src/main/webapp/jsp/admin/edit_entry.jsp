@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -23,7 +25,7 @@
 				class="divider">/</span></li>
 			<li><a href="admin/"><spring:message code="menu.admin" /></a><span
 				class="divider">/</span></li>
-			<li class="active"><spring:message code="menu.entrys" /><span
+			<li class="active"><spring:message code="menu.entries" /><span
 				class="divider">/</span></li>
 			<li class="active">${page_title}</li>
 		</ul>
@@ -88,8 +90,7 @@
 							itemLabel="name" />
 					</form:select>
 				</div>
-				<form:errors path="entryCategory" cssClass="error"
-					element="span" />
+				<form:errors path="entryCategory" cssClass="error" element="span" />
 			</div>
 
 			<!-- Website Input -->
@@ -124,7 +125,7 @@
 
 		</div>
 		<div class="controls">
-			<a a href="admin/entrys" class="btn btn-primary"> <spring:message
+			<a a href="admin/entries" class="btn btn-primary"> <spring:message
 					code="form.cancel" />
 			</a>
 			<button type="submit" class="btn btn-danger">
