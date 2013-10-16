@@ -8,9 +8,12 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 /**
+ * Localized Message loader
+ * 
  * @author Dimitrios Balaouras
- * @since Aug 17, 2013 - 1:12:07 AM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Component

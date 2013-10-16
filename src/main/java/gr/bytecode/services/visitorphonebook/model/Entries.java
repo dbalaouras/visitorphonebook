@@ -10,8 +10,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Dimitrios Balaouras
- * @since May 11, 2013 - 5:33:42 PM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @XmlRootElement(name = "entries")

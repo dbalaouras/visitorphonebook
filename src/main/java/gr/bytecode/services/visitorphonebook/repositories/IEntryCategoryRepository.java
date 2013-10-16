@@ -7,24 +7,24 @@ import java.util.List;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jun 14, 2013 - 1:00:01 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
-public interface IEntryCategoryRepository extends
-		IRepository<EntryCategory> {
+public interface IEntryCategoryRepository extends IRepository<EntryCategory> {
 
 	/**
-	 * Get a list of EntryCategory objects wrapped in a ServiceCategories
-	 * model object
+	 * Get a list of EntryCategory objects wrapped in a ServiceCategories model
+	 * object
 	 * 
 	 * @return
 	 */
 	public EntryCategories getCategories(boolean useCache);
 
 	/**
-	 * Get a list of EntryCategory objects wrapped in a ServiceCategories
-	 * model object
+	 * Get a list of EntryCategory objects wrapped in a ServiceCategories model
+	 * object
 	 * 
 	 * @return
 	 */

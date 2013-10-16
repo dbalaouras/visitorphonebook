@@ -10,8 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
-public class LogoutSuccessHandler extends
-		SimpleUrlAuthenticationFailureHandler {
+/**
+ * @author Dimitrios Balaouras
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
+ * 
+ */
+public class LogoutSuccessHandler extends SimpleUrlAuthenticationFailureHandler {
 
 	/*
 	 * (non-Javadoc)
@@ -42,6 +48,5 @@ public class LogoutSuccessHandler extends
 		}
 
 	}
-	
-	
+
 }

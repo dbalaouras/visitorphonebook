@@ -1,14 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 
-<c:set var="available_languages" value="${fn:split(appconfig['available_languages'], ',')}"
+<c:set var="available_languages"
+	value="${fn:split(appconfig['available_languages'], ',')}"
 	scope="application" />
-	
+
 <c:set var="developer_name" scope="request">
 	<spring:message code="app.developer_name" />
 </c:set>
@@ -56,7 +57,8 @@
 <html lang="${pageContext.response.locale}">
 
 <head>
-<base href="${baseurl}/" />
+
+<base href="${baseurl}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><spring:message code="app.title" /> <c:if
 		test="${not empty page_title}"> -
@@ -64,6 +66,8 @@ ${page_title} </c:if></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<meta http-equiv="content-language"
+	content="${pageContext.response.locale}">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
 
@@ -81,7 +85,7 @@ ${page_title} </c:if></title>
 <link href="assets/css/phonebook.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="http://cleancanvas.herokuapp.com/js/theme.js"></script>
+<!-- <script src="http://cleancanvas.herokuapp.com/js/theme.js"></script> -->
 <script>
 	!function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
@@ -93,6 +97,8 @@ ${page_title} </c:if></title>
 			fjs.parentNode.insertBefore(js, fjs);
 		}
 	}(document, 'script', 'twitter-wjs');
+
+	var baseurl = "${baseurl}";
 </script>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5
 elements -->
@@ -126,7 +132,6 @@ btn-navbar" data-toggle="collapse"
 						code="app.title" /></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-
 						<c:choose>
 							<c:when test="${current_page eq \"list_entries\"}">
 								<li class="active"><a href="javascript:void(0);"><spring:message
@@ -180,8 +185,6 @@ null}">
 									href="#loginBox"><spring:message code="menu.login" /></a></li>
 							</c:otherwise>
 						</c:choose>
-						<li><a data-toggle="modal" data-keyboard="true"
-							href="#aboutBox"><spring:message code="menu.about" /></a></li>
 						<c:choose>
 							<c:when test="${current_page eq \"contact\"}">
 								<li class="active"><a data-toggle="modal"
@@ -190,8 +193,8 @@ null}">
 
 							</c:when>
 							<c:otherwise>
-								<li><a data-toggle="modal" data-keyboard="true"
-									href="/contact"><spring:message code="menu.contact" /></a></li>
+								<li><a href="contact"><spring:message
+											code="menu.contact" /></a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -205,8 +208,7 @@ null}">
 								<ul class="dropdown-menu">
 
 									<c:forEach var="lang" items="${available_languages}">
-										<li><a
-											href="?language=${lang}&d=1"><spring:message
+										<li><a href="?language=${lang}&d=1"><spring:message
 													code="language.${lang}" /></a></li>
 									</c:forEach>
 								</ul>

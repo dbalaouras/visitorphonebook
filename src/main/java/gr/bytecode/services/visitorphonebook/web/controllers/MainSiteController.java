@@ -18,22 +18,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Spring MVC Controller class for the backoffice of the Phonebook project
  * 
  * @author Dimitrios Balaouras
- * @since Jun 12, 2013 - 9:47:53 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Controller
@@ -54,6 +52,74 @@ public class MainSiteController {
 
 	@Value("${baseurl}")
 	private String baseurl;
+
+	/**
+	 * Creates a Binder object that binds an id of entryCategory to a
+	 * EntryCategory object.
+	 * 
+	 * @param request
+	 * @param binder
+	 */
+	@InitBinder
+	protected void initBinder(HttpServletRequest request,
+			ServletRequestDataBinder binder) {
+
+		binder.registerCustomEditor(EntryCategory.class, "entryCategory",
+				new PropertyEditorSupport() {
+
+					/*
+					 * (non-Javadoc)
+					 * 
+					 * @see
+					 * java.beans.PropertyEditorSupport#setAsText(java.lang.
+					 * String)
+					 */
+					@Override
+					public void setAsText(String id) {
+						EntryCategory category = backOfficeService
+								.getEntryCategoryById(Long.parseLong(id));
+
+						setValue(category);
+					}
+				});
+	}
+
+	/**
+	 * Show the Contact page
+	 * 
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
+	public String postMessage(HttpServletRequest request, Model model,
+			HttpSession session,
+			@Valid @ModelAttribute("emailMessage") EmailMessage emailMessage,
+			BindingResult result) throws Exception {
+
+		// check if there were errors
+		if (!result.hasErrors()) { // no errors
+
+			// send the message via the backoffice service
+			backOfficeService.sendContactMessage(emailMessage);
+
+			model.addAttribute("info_message",
+					messages.getString("inform.message_sent", null));
+
+			// clear the message
+			emailMessage.setMessage("");
+
+		} else { // something went wrong
+
+			model.addAttribute("error_message",
+					messages.getString("error.message_sent_error", null));
+		}
+
+		// set the form action
+		model.addAttribute("formaction", "contact");
+
+		return "/contact";
+	}
 
 	/**
 	 * @param entryCategory
@@ -102,6 +168,29 @@ public class MainSiteController {
 	}
 
 	/**
+	 * Show the Contact page
+	 * 
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String showContact(Model model, HttpSession session)
+			throws Exception {
+
+		// create a blank message
+		EmailMessage emailMessage = new EmailMessage();
+
+		// add it to the model
+		model.addAttribute("emailMessage", emailMessage);
+
+		// set the form action
+		model.addAttribute("formaction", "contact");
+
+		return "/contact";
+	}
+
+	/**
 	 * Presents the Phonebook as a list of entries and their data
 	 * 
 	 * @param session
@@ -109,8 +198,7 @@ public class MainSiteController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/entries" }, method = RequestMethod.GET)
-	public String showEntries(HttpSession session, Model model,
-			@RequestHeader MultiValueMap<String, String> headers) {
+	public String showEntries(HttpSession session, Model model) {
 
 		String message = (String) session.getAttribute("message");
 
@@ -144,64 +232,20 @@ public class MainSiteController {
 	}
 
 	/**
-	 * Show the Contact page
-	 * 
 	 * @param model
+	 * @param session
 	 * @return
-	 * @throws Exception
 	 */
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
-	public String showContact(Model model, HttpSession session)
-			throws Exception {
+	@RequestMapping(value = "/loginp", method = RequestMethod.GET)
+	public String showLogin(Model model, HttpSession session) {
 
-		// create a blank message
-		EmailMessage emailMessage = new EmailMessage();
+		if (BackOfficeService.userHasAuthority("ROLE_ADMIN") == false) {
 
-		// add it to the model
-		model.addAttribute("emailMessage", emailMessage);
-
-		// set the form action
-		model.addAttribute("formaction", "/contact");
-
-		return "/contact";
-	}
-
-	/**
-	 * Show the Contact page
-	 * 
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/contact", method = RequestMethod.POST)
-	public String postMessage(Model model, HttpSession session,
-			@Valid @ModelAttribute("emailMessage") EmailMessage emailMessage,
-			BindingResult result, RedirectAttributes redirectAttrs)
-			throws Exception {
-
-		// check if there were errors
-		if (!result.hasErrors()) { // no errors
-
-			// send the message via the backoffice service
-			backOfficeService.sendContactMessage(emailMessage);
-
-			model.addAttribute("info_message",
-					messages.getString("inform.message_sent", null));
-
-			// clear the message
-			emailMessage.setMessage("");
-
-		} else { // something went wrong
-
-			// TODO: i18n this
-			model.addAttribute("error_message",
-					messages.getString("error.message_sent_error", null));
+			// show the loginbox
+			model.addAttribute("slgb", true);
 		}
 
-		// set the form action
-		model.addAttribute("formaction", "/contact");
-
-		return "/contact";
+		return "/home";
 	}
 
 	/**
@@ -234,23 +278,6 @@ public class MainSiteController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/loginp", method = RequestMethod.GET)
-	public String showLogin(Model model, HttpSession session) {
-
-		if (BackOfficeService.userHasAuthority("ROLE_ADMIN") == false) {
-
-			// show the loginbox
-			model.addAttribute("slgb", true);
-		}
-
-		return "/home";
-	}
-
-	/**
-	 * @param model
-	 * @param session
-	 * @return
-	 */
 	@RequestMapping(value = "/success", method = RequestMethod.GET)
 	public String showSuccess(Model model, HttpSession session) {
 
@@ -263,37 +290,6 @@ public class MainSiteController {
 		// show a successful message
 		return "/add_entry_success";
 
-	}
-
-	/**
-	 * Creates a Binder object that binds an id of entryCategory to a
-	 * EntryCategory object.
-	 * 
-	 * @param request
-	 * @param binder
-	 */
-	@InitBinder
-	protected void initBinder(HttpServletRequest request,
-			ServletRequestDataBinder binder) {
-
-		binder.registerCustomEditor(EntryCategory.class, "entryCategory",
-				new PropertyEditorSupport() {
-
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see
-					 * java.beans.PropertyEditorSupport#setAsText(java.lang.
-					 * String)
-					 */
-					@Override
-					public void setAsText(String id) {
-						EntryCategory category = backOfficeService
-								.getEntryCategoryById(Long.parseLong(id));
-
-						setValue(category);
-					}
-				});
 	}
 
 }

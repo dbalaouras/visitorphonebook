@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -13,8 +12,8 @@
 					<spring:message code="app.entry_saved" />
 				</h3>
 				<p class="margin-top">
-					<a href="${baseurl}/entries" class="btn  btn-primary"><spring:message
-							code="app.continue_browsing" /></a> <a href="${baseurl}/entries/add"
+					<a href="${baseurl}entries" class="btn  btn-primary"><spring:message
+							code="app.continue_browsing" /></a> <a href="${baseurl}entries/add"
 						class="btn btn-success"><spring:message code="app.add_more" /></a>
 				</p>
 				<p style="font-size: 40px;" class="margin-top">

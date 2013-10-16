@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jun 14, 2013 - 1:00:59 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Repository

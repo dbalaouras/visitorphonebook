@@ -4,8 +4,9 @@ package gr.bytecode.services.visitorphonebook.web.exceptions;
  * Abstract service exception
  * 
  * @author Dimitrios Balaouras
- * @since Jul 6, 2013 - 5:13:40 PM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 public abstract class ServiceAbstractException extends Exception {

@@ -14,8 +14,9 @@ import javax.xml.bind.annotation.XmlSeeAlso;
  * Generic call response class
  * 
  * @author Dimitrios Balaouras
- * @since Jun 29, 2013 - 11:24:50 PM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @XmlRootElement(name = "result")

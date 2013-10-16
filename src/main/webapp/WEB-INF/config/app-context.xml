@@ -120,13 +120,14 @@
 	<!-- Map the localization property files to spring's message source class -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource"
-		p:basename="messages"></bean>
+		p:defaultEncoding="UTF-8" p:basename="messages"></bean>
 
 
 	<!-- Mail Configuration -->
 	<!-- SET default mail properties -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.smtp.server.host}" />
+		<property name="defaultEncoding" value="UTF-8" />
 		<property name="port" value="${mail.smtp.server.port}" />
 		<property name="username" value="${mail.sender.address}" />
 		<property name="password" value="${mail.sender.password}" />
@@ -135,7 +136,7 @@
 				<prop key="mail.transport.protocol">smtp</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">false</prop>
-				<prop key="mail.debug">true</prop>
+				<prop key="mail.debug">false</prop>
 			</props>
 		</property>
 	</bean>

@@ -25,8 +25,9 @@ import org.hibernate.validator.constraints.URL;
 
 /**
  * @author Dimitrios Balaouras
- * @since May 18, 2013 - 11:08:25 PM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Entity
@@ -38,6 +39,7 @@ import org.hibernate.validator.constraints.URL;
 @NamedQueries({
 		@NamedQuery(name = "Entry.findAllEntries", query = "SELECT o FROM Entry o"),
 		@NamedQuery(name = "Entry.findEntryByName", query = "SELECT o FROM Entry o WHERE o.name = :entryName AND o.status = :entryStatus"),
+		@NamedQuery(name = "Entry.findEntryByNameAndCat", query = "SELECT o FROM Entry o WHERE o.name = :entryName AND o.entryCategory.id = :categoryId"),
 		@NamedQuery(name = "Entry.findEntriesByCategoryId", query = "SELECT o FROM Entry o WHERE o.entryCategory.id = :categoryId AND o.status = :entryStatus") })
 public class Entry implements IEntity {
 

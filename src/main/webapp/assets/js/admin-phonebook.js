@@ -1,11 +1,11 @@
 /*
  * Opens up a confirmation dialog
  */
-confirmAction = function(confDialogId, positiveUrl) {
+confirmAction = function(confDialogId, redirUrl) {
 	$('#' + confDialogId).modal('show');
 
 	$('#' + confDialogId + '_butt_positive').on('click', function() {
-		document.location = positiveUrl;
+		document.location = redirUrl;
 	});
 
 };
@@ -14,7 +14,8 @@ confirmAction = function(confDialogId, positiveUrl) {
  * Requests a confirmation before deleting a category
  */
 deleteCategory = function(entryId) {
-	confirmAction('conf_delete_box', '/admin/categories/delete/' + entryId);
+	confirmAction('conf_delete_box', baseurl + 'admin/categories/delete/'
+			+ entryId);
 
 };
 
@@ -22,19 +23,20 @@ deleteCategory = function(entryId) {
  * Requests a confirmation before deleting an entry
  */
 deleteEntry = function(entryId) {
-	confirmAction('conf_delete_box', '/admin/entries/delete/' + entryId);
+	confirmAction('conf_delete_box', baseurl + 'admin/entries/delete/'
+			+ entryId);
 };
 
 /*
  * Calls the url that activates an entry
  */
 activateEntry = function(entryId) {
-	document.location = '/admin/entries/activate/' + entryId;
+	document.location = baseurl + 'admin/entries/activate/' + entryId;
 };
 
 /*
  * Calls the url that deactivates an entry
  */
 deactivateEntry = function(entryId) {
-	document.location = '/admin/entries/deactivate/' + entryId;
+	document.location = baseurl + 'admin/entries/deactivate/' + entryId;
 };

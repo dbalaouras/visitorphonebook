@@ -29,8 +29,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Dimitrios Balaouras
- * @since May 18, 2013 - 11:08:25 PM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Entity
@@ -235,7 +236,6 @@ public class EntryCategory implements IEntity {
 			allEntries = new ArrayList<Entry>(deactivatedEntries);
 			allEntries.addAll(entries);
 		}
-		System.out.println(allEntries);
 
 		return allEntries;
 	}

@@ -7,8 +7,9 @@ import javax.persistence.PersistenceContext;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jun 14, 2013 - 1:00:59 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 public class BaseRepository<E extends IEntity> implements IRepository<E> {

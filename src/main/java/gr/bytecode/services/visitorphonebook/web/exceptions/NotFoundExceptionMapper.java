@@ -11,8 +11,9 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jul 6, 2013 - 5:48:49 PM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Provider

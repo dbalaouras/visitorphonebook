@@ -1,5 +1,7 @@
 package gr.bytecode.services.visitorphonebook.web.security;
 
+import gr.bytecode.services.visitorphonebook.services.BackOfficeService;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -7,11 +9,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
+/**
+ * Spring Authentication Failed Login Handler
+ * 
+ * @author Dimitrios Balaouras
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
+ * 
+ */
 public class AuthenticationFailureHandler extends
 		SimpleUrlAuthenticationFailureHandler {
+
+	/**
+	 * Injected BackOfficeService bean
+	 */
+	@Autowired
+	BackOfficeService backOfficeService;
 
 	/*
 	 * (non-Javadoc)
@@ -30,18 +48,26 @@ public class AuthenticationFailureHandler extends
 		// redirect to the original referrer
 		String referrer = request.getHeader("Referer");
 
+		String redirectUrl = backOfficeService.getBaseUrl();
+
 		if (referrer != null && "".equals(referrer) == false) {
 
 			URL url = new URL(referrer);
 
-			URL redirectUrl = new URL(url.getProtocol() + "://" + url.getHost()
-					+ ":" + url.getPort() + url.getPath()
-					+ "?lgerr=1&slgb=true");
+			redirectUrl = url.getProtocol() + "://" + url.getHost();
 
-			response.sendRedirect(redirectUrl.toString());
+			int port = url.getPort();
+
+			if (port > 0) {
+				redirectUrl += ":" + url.getPort();
+			}
+
+			redirectUrl += url.getPath() + "?lgerr=1&slgb=true";
+
 		}
 
+		response.sendRedirect(redirectUrl);
+
 	}
-	
-	
+
 }

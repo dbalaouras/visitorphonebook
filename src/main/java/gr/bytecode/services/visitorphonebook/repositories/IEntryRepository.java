@@ -5,8 +5,9 @@ import gr.bytecode.services.visitorphonebook.model.Entries;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jun 14, 2013 - 1:00:01 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 public interface IEntryRepository extends IRepository<Entry> {
@@ -31,5 +32,14 @@ public interface IEntryRepository extends IRepository<Entry> {
 	 * @return
 	 */
 	public abstract Entries getEntries(Long categoryId, int status);
+
+	/**
+	 * Find an entry given it's name, status and category name
+	 * 
+	 * @param name
+	 * @param categoryId
+	 * @return
+	 */
+	public abstract Entry getEntryByNameAndCat(String name, Long categoryId);
 
 }

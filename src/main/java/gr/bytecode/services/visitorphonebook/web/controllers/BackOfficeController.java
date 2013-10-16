@@ -35,8 +35,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Spring MVC Controller class for the backoffice of the Phonebook project
  * 
  * @author Dimitrios Balaouras
- * @since Jun 12, 2013 - 9:47:53 AM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Controller
@@ -66,8 +67,6 @@ public class BackOfficeController {
 		return "admin/home";
 	}
 
-	// *************** ENTRIES
-
 	/**
 	 * @param session
 	 * @param model
@@ -76,8 +75,10 @@ public class BackOfficeController {
 	@RequestMapping(value = "/entries", method = RequestMethod.GET)
 	public String showEntries(HttpSession session, Model model) {
 
+		// retrieve the categories
 		EntryCategories entryCategories = backOfficeService.getCategories(true);
 
+		// add the categories (and entries) to the model
 		model.addAttribute("entryCategories", entryCategories);
 
 		return "admin/list_entries";
@@ -141,41 +142,22 @@ public class BackOfficeController {
 		if (entryId != null) {
 
 			entry = backOfficeService.getEntryById(entryId);
+
+			if (entry == null) {
+				model.addAttribute("error_message",
+						messages.getString("error.record_not_found", null));
+
+				return showEntries(session, model);
+
+			}
+
 		} else {
 
 			// lets create a new one
 			entry = new Entry();
 		}
 
-		if (entry == null) {
-			model.addAttribute("error_message",
-					messages.getString("error.record_not_found", null));
-
-			return showEntries(session, model);
-
-		} else {
-
-			// add the form action as a relative path
-			model.addAttribute("formaction", "admin/entries/save");
-
-			model.addAttribute(entry);
-
-			// get categories
-			List<EntryCategory> entryCategories = backOfficeService
-					.getCategoryList(true);
-
-			model.addAttribute("entryCategories", entryCategories);
-
-			Map<Integer, String> statuses = new LinkedHashMap<Integer, String>();
-
-			statuses.put(0, messages.getString("form.deleted", null));
-			statuses.put(1, messages.getString("form.inactive", null));
-			statuses.put(2, messages.getString("form.active", null));
-
-			model.addAttribute("statuses", statuses);
-
-			return "admin/edit_entry";
-		}
+		return prepareEditEntryForm(entry, model);
 
 	}
 
@@ -187,42 +169,44 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/entries/save", method = RequestMethod.POST)
 	public String saveEntry(@Valid @ModelAttribute("entry") Entry entry,
-			BindingResult result, HttpSession session, Model model,
-			RedirectAttributes redirectAttrs) {
+			BindingResult result, Model model) {
 
-		if (result.hasErrors()) {
-			return editEntry(entry.getId(), session, model);
-		}
+		// check for errors
+		if (!result.hasErrors()) {
 
-		try {
+			try {
 
-			// check if this is a new record
-			if (entry.getId() != null) {
+				// check if this is a new record
+				if (entry.getId() != null) {
 
-				backOfficeService.updateEntry(entry);
+					backOfficeService.updateEntry(entry);
 
-				// print a flash message
-				redirectAttrs.addFlashAttribute("info_message",
-						messages.getString("inform.entry_updated", null) + ": "
-								+ entry);
+					// add a flash message
+					model.addAttribute("info_message",
+							messages.getString("inform.entry_updated", null)
+									+ ": " + entry);
 
-			} else {
+				} else {
 
-				backOfficeService.saveEntry(entry);
+					// save the entity and update the local reference of it
+					entry = backOfficeService.saveEntry(entry);
 
-				redirectAttrs.addFlashAttribute("info_message",
-						messages.getString("inform.entry_saved", null) + ": "
-								+ entry);
+					// add a flash message
+					model.addAttribute("info_message",
+							messages.getString("inform.entry_saved", null)
+									+ ": " + entry);
 
+				}
+
+				// clear cache
+				backOfficeService.clearHibernateCache();
+
+			} catch (Exception e) {
+
+				// oops!
+				model.addAttribute("error_message", e.getMessage());
 			}
 
-			// clear cache
-			backOfficeService.clearHibernateCache();
-
-		} catch (Exception e) {
-
-			// oops!
-			model.addAttribute("error_message", e.getMessage());
 		}
 
 		// get categories
@@ -231,10 +215,45 @@ public class BackOfficeController {
 
 		model.addAttribute("entryCategories", entryCategories);
 
-		return "redirect:/web/admin/entries";
+		return prepareEditEntryForm(entry, model);
+
 	}
 
 	/**
+	 * Prepares the entry form
+	 * 
+	 * @param entry
+	 * @param model
+	 * @return
+	 */
+	private String prepareEditEntryForm(Entry entry, Model model) {
+
+		// add the form action as a relative path
+		model.addAttribute("formaction", "admin/entries/save");
+
+		model.addAttribute(entry);
+
+		// get categories
+		List<EntryCategory> entryCategories = backOfficeService
+				.getCategoryList(true);
+
+		model.addAttribute("entryCategories", entryCategories);
+
+		// create the status map
+		Map<Integer, String> statuses = new LinkedHashMap<Integer, String>();
+
+		statuses.put(0, messages.getString("form.deleted", null));
+		statuses.put(1, messages.getString("form.inactive", null));
+		statuses.put(2, messages.getString("form.active", null));
+
+		model.addAttribute("statuses", statuses);
+
+		return "admin/edit_entry";
+	}
+
+	/**
+	 * Handles Entry activation requests
+	 * 
 	 * @param entryCategory
 	 * @param session
 	 * @param model
@@ -286,8 +305,6 @@ public class BackOfficeController {
 
 		return showEntries(session, model);
 	}
-
-	// *************** CATEGORIES
 
 	/**
 	 * @param entryCategory
@@ -382,55 +399,55 @@ public class BackOfficeController {
 			BindingResult result, Model model, HttpSession session,
 			RedirectAttributes redirectAttrs) {
 
+		// append the categories
+		EntryCategories entryCategories = backOfficeService.getCategories(true);
+
+		model.addAttribute("entryCategories", entryCategories);
+
 		// if there were errors, load the edit form
-		if (result.hasErrors()) {
+		if (!result.hasErrors()) {
+			// set the changed to now
+			entryCategory.setChanged(new Date());
 
-			// append the categories
-			EntryCategories entryCategories = backOfficeService
-					.getCategories(true);
+			try {
 
-			model.addAttribute("entryCategories", entryCategories);
+				if (entryCategory.getId() != null) {
 
-			return "admin/edit_category";
-		}
+					entryCategory = backOfficeService
+							.updateEntryCategory(entryCategory);
 
-		// set the changed to now
-		entryCategory.setChanged(new Date());
+					// add a flash message
+					model.addAttribute("info_message",
+							messages.getString("inform.category_updated", null)
+									+ ": " + entryCategory);
 
-		try {
-			if (entryCategory.getId() != null) {
+				} else {
 
-				entryCategory = backOfficeService
-						.updateEntryCategory(entryCategory);
+					// save the entry
+					entryCategory = backOfficeService
+							.saveEntryCategory(entryCategory);
 
-				// print a flash message
-				redirectAttrs.addFlashAttribute("info_message",
-						messages.getString("inform.category_updated", null)
-								+ ": " + entryCategory);
+					// add a flash message
+					model.addAttribute("info_message",
+							messages.getString("inform.category_saved", null)
+									+ ": " + entryCategory);
 
-			} else {
+				}
 
-				entryCategory = backOfficeService
-						.saveEntryCategory(entryCategory);
+				// clear cache
+				backOfficeService.clearHibernateCache();
 
-				// print a flash message
-				redirectAttrs.addFlashAttribute("info_message",
-						messages.getString("inform.category_saved", null)
-								+ ": " + entryCategory);
+			} catch (EntityExistsException e) {
+
+				// add an error message
+				redirectAttrs
+						.addFlashAttribute("error_message", e.getMessage());
+
 			}
-
-			// clear cache
-			backOfficeService.clearHibernateCache();
-
-		} catch (EntityExistsException e) {
-
-			// add an error message
-			redirectAttrs.addFlashAttribute("error_message", e.getMessage());
-
 		}
 
-		return "redirect:/web/admin/categories";
-
+		// always return the edit category page
+		return "admin/edit_category";
 	}
 
 	/**
@@ -445,7 +462,11 @@ public class BackOfficeController {
 
 		// delete the category
 		try {
+
+			// delete the category
 			backOfficeService.deleteCategory(categoryId);
+
+			// inform the user for the successful deletion
 			model.addAttribute("info_message",
 					messages.getString("inform.category_deleted", null) + ":"
 							+ categoryId);

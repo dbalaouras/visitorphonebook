@@ -1,4 +1,6 @@
 mail.smtp.server.host=smtp.myemailserver.com
+admin.username=alfred
+admin.password=alfred1
 mail.smtp.server.port=25
 mail.sender.address=myemail@example.com
 mail.sender.password=mysecretpass

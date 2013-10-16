@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author Dimitrios Balaouras
- * @since Jun 14, 2013 - 1:00:59 AM
- * @Copyright CA Inc. 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Repository
@@ -64,9 +65,9 @@ public class EntryRepository extends BaseRepository<Entry> implements
 				.setParameter("entryName", name)
 				.setParameter("entryStatus", status);
 
-		Entry category = (Entry) queryCategory.getSingleResult();
+		Entry entry = (Entry) queryCategory.getSingleResult();
 
-		return category;
+		return entry;
 	}
 
 	/*
@@ -91,6 +92,26 @@ public class EntryRepository extends BaseRepository<Entry> implements
 		Entries entries = new Entries(list);
 
 		return entries;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see gr.bytecode.services.visitorphonebook.repositories.IEntryRepository#
+	 * getEntryByNameAndCat(java.lang.String, int)
+	 */
+	@Override
+	public Entry getEntryByNameAndCat(String name, Long categoryId) {
+
+		// find the entry
+		Query queryCategory = em
+				.createNamedQuery("Entry.findEntryByNameAndCat")
+				.setParameter("entryName", name)
+				.setParameter("categoryId", categoryId);
+
+		Entry entry = (Entry) queryCategory.getSingleResult();
+
+		return entry;
 	}
 
 }

@@ -1,5 +1,13 @@
 package gr.bytecode.services.visitorphonebook.repositories;
 
+/**
+ * @author Dimitrios Balaouras
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
+ * 
+ * @param <E>
+ */
 public interface IRepository<E> {
 
 	/**
@@ -16,7 +24,6 @@ public interface IRepository<E> {
 	 * @return
 	 */
 	public E saveEntity(E entity);
-	
 
 	/**
 	 * @return

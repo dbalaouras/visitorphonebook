@@ -26,37 +26,57 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 /**
  * @author Dimitrios Balaouras
- * @since May 11, 2013 - 5:21:49 PM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Service("backOfficeService")
 public class BackOfficeService {
 
+	/**
+	 * The entity manager
+	 */
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * Injected concrete CategoryRepository
+	 */
 	@Autowired
 	private IEntryCategoryRepository entryCategoryRepository;
 
+	/**
+	 * Injected concrete EntryRepository
+	 */
 	@Autowired
 	private IEntryRepository entryRepository;
 
+	/**
+	 * Injected localized message loader
+	 */
 	@Autowired
 	private MessageLoader messageLoader;
 
 	/**
-	 * Mail service
+	 * Injected Mail service
 	 */
 	@Autowired
 	Mailer mailer;
 
+	/**
+	 * The base url of the website (injected)
+	 */
 	@Value("${baseurl}")
 	private String baseurl;
 
+	/**
+	 * The email of the site admin (injected)
+	 */
 	@Value("${admin-email}")
 	private String adminEmail;
 
@@ -286,6 +306,17 @@ public class BackOfficeService {
 	}
 
 	/**
+	 * Find an entry given it's name, status and category name
+	 * 
+	 * @param name
+	 * @param categoryId
+	 * @return
+	 */
+	public Entry getEntryByNameAndCat(String name, Long categoryId) {
+		return entryRepository.getEntryByNameAndCat(name, categoryId);
+	}
+
+	/**
 	 * @param entryCategory
 	 * @return
 	 * @throws EntityExistsException
@@ -351,7 +382,10 @@ public class BackOfficeService {
 
 			// check if the category exists already
 			try {
-				savedEntry = entryRepository.findEntryByName(entry.getName());
+				savedEntry = entryRepository.getEntryByNameAndCat(
+						entry.getName(), entry.getEntryCategory().getId());
+
+				System.out.println("SAVED: " + savedEntry);
 
 			} catch (NoResultException e) {
 
@@ -359,10 +393,7 @@ public class BackOfficeService {
 			}
 
 			// check if the entry already exists
-			if (savedEntry != null
-
-					&& savedEntry.getEntryCategory().getId() == entry
-							.getEntryCategory().getId()) {
+			if (savedEntry != null) {
 
 				throw new EntityExistsException(messageLoader.getString(
 						"BackOfficeService.ERR_ENTRY_EXISTS", null)); //$NON-NLS-1$
@@ -520,5 +551,13 @@ public class BackOfficeService {
 	public String getBaseUrl() {
 
 		return baseurl;
+	}
+
+	/**
+	 * @param model
+	 */
+	public void addDebugMessage(Model model, String message) {
+
+		model.addAttribute("debug", message);
 	}
 }

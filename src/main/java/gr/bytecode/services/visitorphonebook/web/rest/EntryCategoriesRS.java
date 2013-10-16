@@ -15,8 +15,9 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Dimitrios Balaouras
- * @since May 11, 2013 - 5:21:49 PM
- * @Copyright ByteCode.gr 2013
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
  * 
  */
 @Service("categoriesService")

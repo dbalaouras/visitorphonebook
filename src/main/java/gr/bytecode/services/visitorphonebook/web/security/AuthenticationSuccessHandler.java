@@ -13,6 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
+/**
+ * Spring Authentication Success Login Handler
+ * 
+ * @author Dimitrios Balaouras
+ * @version %G%
+ * @since %I%
+ * @copyright Bytecode.gr 2013
+ * 
+ */
 public class AuthenticationSuccessHandler extends
 		SimpleUrlAuthenticationSuccessHandler {
 
@@ -59,7 +68,5 @@ public class AuthenticationSuccessHandler extends
 
 		response.sendRedirect(redirectUrl);
 	}
-	
-	
 
 }
