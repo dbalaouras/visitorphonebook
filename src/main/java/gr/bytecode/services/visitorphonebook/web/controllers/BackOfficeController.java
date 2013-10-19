@@ -35,8 +35,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Spring MVC Controller class for the backoffice of the Phonebook project
  * 
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */

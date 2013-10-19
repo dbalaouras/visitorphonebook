@@ -11,9 +11,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 /**
+ * Spring Authentication Success Logout Handler 
+ * 
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */

@@ -6,10 +6,10 @@ import static org.mockito.Matchers.*;
 import gr.bytecode.services.visitorphonebook.entities.Entry;
 import gr.bytecode.services.visitorphonebook.entities.EntryCategory;
 import gr.bytecode.services.visitorphonebook.model.EntryCategories;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryCategoryRepository;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryRepository;
 import gr.bytecode.services.visitorphonebook.repositories.EntryCategoryRepository;
 import gr.bytecode.services.visitorphonebook.repositories.EntryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.BasicEntryCategoryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.BasicEntryRepository;
 import gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException;
 import gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException;
 
@@ -32,12 +32,12 @@ public class BackOfficeServiceTest {
 	/**
 	 * Repository of entry categories
 	 */
-	private IEntryCategoryRepository entryCategoryRepository;
+	private EntryCategoryRepository entryCategoryRepository;
 
 	/**
 	 * Repository of entries
 	 */
-	private IEntryRepository entryRepository;
+	private EntryRepository entryRepository;
 
 	/**
 	 * The tested object
@@ -51,8 +51,8 @@ public class BackOfficeServiceTest {
 	public void setUp() {
 
 		// mock the repositories
-		entryCategoryRepository = mock(EntryCategoryRepository.class);
-		entryRepository = mock(EntryRepository.class);
+		entryCategoryRepository = mock(BasicEntryCategoryRepository.class);
+		entryRepository = mock(BasicEntryRepository.class);
 		EntryCategories entryCategories = mock(EntryCategories.class);
 		EntryCategory entryCategory = mock(EntryCategory.class);
 
@@ -117,7 +117,7 @@ public class BackOfficeServiceTest {
 		savedEntry.setEntryCategory(savedEntryCategory);
 
 		// setup the mocks
-		when(entryRepository.findEntryByName(orgName)).thenReturn(savedEntry);
+		when(entryRepository.getEntryByNameAndCat(orgName, id)).thenReturn(savedEntry);
 		when(entryCategoryRepository.findEntityById(id)).thenReturn(
 				savedEntryCategory);
 

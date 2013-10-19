@@ -2,7 +2,7 @@ package gr.bytecode.services.visitorphonebook.web.rest;
 
 import gr.bytecode.services.visitorphonebook.entities.Entry;
 import gr.bytecode.services.visitorphonebook.model.Entries;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.EntryRepository;
 import gr.bytecode.services.visitorphonebook.services.BackOfficeService;
 import gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException;
 import gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException;
@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -36,7 +36,7 @@ public class EntriesRS {
 	BackOfficeService backOfficeService;
 
 	@Autowired
-	IEntryRepository entryRepository;
+	EntryRepository entryRepository;
 
 	/**
 	 * @param name

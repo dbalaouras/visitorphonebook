@@ -2,24 +2,20 @@ package gr.bytecode.services.visitorphonebook.services;
 
 import java.util.concurrent.Future;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 /**
  * Mail service
  * 
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -31,12 +27,6 @@ public class Mailer {
 	 */
 	@Autowired
 	private MailSender mailSender;
-
-	/**
-	 * The http session
-	 */
-	@Autowired
-	HttpSession session;
 
 	/**
 	 * The email address of the site admin
@@ -68,15 +58,8 @@ public class Mailer {
 		message.setBcc(to);
 		message.setSubject(subject);
 
-		// get the current user
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String name = user.getUsername(); // get logged in username
-
-		String messageText = body.replace("${username}", name);
-
 		// set the message text
-		message.setText(messageText);
+		message.setText(body);
 
 		mailSender.send(message);
 

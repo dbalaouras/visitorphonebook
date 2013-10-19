@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
  * Localized Message loader
  * 
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */

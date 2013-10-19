@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -47,7 +47,6 @@ public class EmailMessage {
 	 */
 	public void setSenderName(String senderName) {
 
-		System.out.println("Sender name: " + senderName);
 		this.senderName = senderName;
 	}
 
@@ -79,8 +78,6 @@ public class EmailMessage {
 	 *            the message to set
 	 */
 	public void setMessage(String message) {
-
-		System.out.println(message);
 
 		this.message = message;
 	}

@@ -1,18 +1,19 @@
 package gr.bytecode.services.visitorphonebook.repositories;
 
-import gr.bytecode.services.visitorphonebook.entities.IEntity;
+import gr.bytecode.services.visitorphonebook.entities.PhonebookEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
-public class BaseRepository<E extends IEntity> implements IRepository<E> {
+abstract public class AbstractRepository<E extends PhonebookEntity> implements
+		Repository<E> {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -25,7 +26,7 @@ public class BaseRepository<E extends IEntity> implements IRepository<E> {
 	 * 
 	 * @param entityType
 	 */
-	public BaseRepository(Class<E> entityType) {
+	public AbstractRepository(Class<E> entityType) {
 		this.entityType = entityType;
 	}
 

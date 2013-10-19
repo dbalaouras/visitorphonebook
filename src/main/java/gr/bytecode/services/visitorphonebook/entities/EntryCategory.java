@@ -29,8 +29,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -45,7 +45,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 		@NamedQuery(name = "EntryCategory.findAllCategories", query = "SELECT oc FROM EntryCategory oc "),
 		@NamedQuery(name = "EntryCategory.findAllCategoriesNames", query = "SELECT new gr.bytecode.services.visitorphonebook.entities.EntryCategory(oc.id, oc.name, oc.description) FROM EntryCategory oc"),
 		@NamedQuery(name = "EntryCategory.findCategoryByName", query = "SELECT oc FROM EntryCategory oc WHERE oc.name = :categoryName") })
-public class EntryCategory implements IEntity {
+public class EntryCategory implements PhonebookEntity {
 
 	/**
 	 * Primary key of the entity

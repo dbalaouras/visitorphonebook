@@ -25,8 +25,8 @@ import org.hibernate.validator.constraints.URL;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -41,7 +41,7 @@ import org.hibernate.validator.constraints.URL;
 		@NamedQuery(name = "Entry.findEntryByName", query = "SELECT o FROM Entry o WHERE o.name = :entryName AND o.status = :entryStatus"),
 		@NamedQuery(name = "Entry.findEntryByNameAndCat", query = "SELECT o FROM Entry o WHERE o.name = :entryName AND o.entryCategory.id = :categoryId"),
 		@NamedQuery(name = "Entry.findEntriesByCategoryId", query = "SELECT o FROM Entry o WHERE o.entryCategory.id = :categoryId AND o.status = :entryStatus") })
-public class Entry implements IEntity {
+public class Entry implements PhonebookEntity {
 
 	/**
 	 * Primary key of the entity

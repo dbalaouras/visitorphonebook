@@ -1,7 +1,7 @@
 package gr.bytecode.services.visitorphonebook.web.rest;
 
 import gr.bytecode.services.visitorphonebook.model.EntryCategories;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryCategoryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.EntryCategoryRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -28,7 +28,7 @@ public class EntryCategoriesRS {
 	private EntityManager em;
 
 	@Autowired
-	IEntryCategoryRepository entryCategoryRepository;
+	EntryCategoryRepository entryCategoryRepository;
 
 	/**
 	 * @return

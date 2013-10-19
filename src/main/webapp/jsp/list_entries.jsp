@@ -20,7 +20,7 @@
 				<ul class="nav nav-list bs-docs-sidenav">
 					<c:forEach var="category" items="${entryCategories.categories}">
 						<c:if test="${fn:length(category.entries) gt 0}">
-							<li><a href="${request_path}#cat_${category.id}">${category.name}<i
+							<li><a href="#cat_${category.id}">${category.name}<i
 									class="icon-chevron-right"></i></a></li>
 						</c:if>
 					</c:forEach>

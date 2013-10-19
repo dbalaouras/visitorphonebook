@@ -5,100 +5,34 @@ import gr.bytecode.services.visitorphonebook.model.EntryCategories;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
-import org.springframework.stereotype.Repository;
-
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
-@Repository
-public class EntryCategoryRepository extends BaseRepository<EntryCategory>
-		implements IEntryCategoryRepository {
-
-	@PersistenceContext
-	private EntityManager em;
+public interface EntryCategoryRepository extends Repository<EntryCategory> {
 
 	/**
-	 * Default arg-less constructor
-	 */
-	public EntryCategoryRepository() {
-
-		// tell the base class which entity we are managing
-		super(EntryCategory.class);
-	}
-
-	/*
-	 * (non-Javadoc)
+	 * Get a list of EntryCategory objects wrapped in a ServiceCategories model
+	 * object
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.
-	 * IEntryCategoryRepository#getCategories()
+	 * @return
 	 */
-	public EntryCategories getCategories(boolean useCache) {
+	public EntryCategories getCategories(boolean useCache);
 
-		// get a list of the entries
-		Query queryAllCategories = em
-				.createNamedQuery("EntryCategory.findAllCategories");
-
-		// configure the cache
-		queryAllCategories.setHint("org.hibernate.cacheable", useCache);
-
-		@SuppressWarnings("unchecked")
-		final List<EntryCategory> list = queryAllCategories.getResultList();
-
-		EntryCategories categories = new EntryCategories();
-
-		categories.setCategories(list);
-
-		return categories;
-	}
-
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get a list of EntryCategory objects wrapped in a ServiceCategories model
+	 * object
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.
-	 * IEntryCategoryRepository#findCategoryByName()
+	 * @return
 	 */
-	@Override
-	public EntryCategory findCategoryByName(String name, boolean useCache) {
+	public List<EntryCategory> getCategoryList(boolean useCache);
 
-		// get a list of the entries
-		Query query = em.createNamedQuery("EntryCategory.findCategoryByName")
-				.setParameter("categoryName", name);
-
-		// configure the cache
-		query.setHint("org.hibernate.cacheable", useCache);
-
-		EntryCategory category = (EntryCategory) query.getSingleResult();
-
-		return category;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.
-	 * IEntryCategoryRepository#getCategoriesNames()
+	/**
+	 * @return
 	 */
-	@Override
-	public List<EntryCategory> getCategoryList(boolean useCache) {
-
-		// get a list of the entries
-		Query query = em
-				.createNamedQuery("EntryCategory.findAllCategoriesNames");
-
-		query.setHint("org.hibernate.cacheable", useCache);
-
-		@SuppressWarnings("unchecked")
-		List<EntryCategory> list = query.getResultList();
-
-		return list;
-	}
+	public EntryCategory findCategoryByName(String name, boolean useCache);
 
 }

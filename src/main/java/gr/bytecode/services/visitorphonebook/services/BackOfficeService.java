@@ -4,8 +4,8 @@ import gr.bytecode.services.visitorphonebook.entities.EmailMessage;
 import gr.bytecode.services.visitorphonebook.entities.Entry;
 import gr.bytecode.services.visitorphonebook.entities.EntryCategory;
 import gr.bytecode.services.visitorphonebook.model.EntryCategories;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryCategoryRepository;
-import gr.bytecode.services.visitorphonebook.repositories.IEntryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.EntryCategoryRepository;
+import gr.bytecode.services.visitorphonebook.repositories.EntryRepository;
 import gr.bytecode.services.visitorphonebook.web.exceptions.EntityExistsException;
 import gr.bytecode.services.visitorphonebook.web.exceptions.InvalidDataException;
 
@@ -30,8 +30,8 @@ import org.springframework.ui.Model;
 
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
@@ -48,13 +48,13 @@ public class BackOfficeService {
 	 * Injected concrete CategoryRepository
 	 */
 	@Autowired
-	private IEntryCategoryRepository entryCategoryRepository;
+	private EntryCategoryRepository entryCategoryRepository;
 
 	/**
 	 * Injected concrete EntryRepository
 	 */
 	@Autowired
-	private IEntryRepository entryRepository;
+	private EntryRepository entryRepository;
 
 	/**
 	 * Injected localized message loader
@@ -338,7 +338,7 @@ public class BackOfficeService {
 	 *            the entryCategoryRepository to set
 	 */
 	public void setEntryCategoryRepository(
-			IEntryCategoryRepository entryCategoryRepository) {
+			EntryCategoryRepository entryCategoryRepository) {
 		this.entryCategoryRepository = entryCategoryRepository;
 	}
 
@@ -346,7 +346,7 @@ public class BackOfficeService {
 	 * @param entryRepository
 	 *            the entryRepository to set
 	 */
-	public void setEntryRepository(IEntryRepository entryRepository) {
+	public void setEntryRepository(EntryRepository entryRepository) {
 		this.entryRepository = entryRepository;
 	}
 
@@ -361,19 +361,19 @@ public class BackOfficeService {
 		// validate data
 		if (entry.getEntryCategory() == null) {
 			throw new InvalidDataException(messageLoader.getString(
-					"BackOfficeService.ERR_CATEGORY_DEFINED", null)); //$NON-NLS-1$
+					"BackOfficeService.ERR_CATEGORY_DEFINED", null));
 		}
 
 		// validate the name
 		if (entry.getName() == null) {
 			throw new InvalidDataException(messageLoader.getString(
-					"BackOfficeService.ERR_CATEGORY_MANDATORY", null)); //$NON-NLS-1$
+					"BackOfficeService.ERR_CATEGORY_MANDATORY", null));
 		}
 
 		// validate the phone number
 		if (entry.getTelephoneNumber() == null) {
 			throw new InvalidDataException(messageLoader.getString(
-					"BackOfficeService.ERR_TELEPHONE_MANDATORY", null)); //$NON-NLS-1$
+					"BackOfficeService.ERR_TELEPHONE_MANDATORY", null));
 		}
 
 		if (entry.getId() == null) { // new entry?
@@ -384,8 +384,6 @@ public class BackOfficeService {
 			try {
 				savedEntry = entryRepository.getEntryByNameAndCat(
 						entry.getName(), entry.getEntryCategory().getId());
-
-				System.out.println("SAVED: " + savedEntry);
 
 			} catch (NoResultException e) {
 

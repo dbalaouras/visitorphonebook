@@ -3,115 +3,43 @@ package gr.bytecode.services.visitorphonebook.repositories;
 import gr.bytecode.services.visitorphonebook.entities.Entry;
 import gr.bytecode.services.visitorphonebook.model.Entries;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
-import org.springframework.stereotype.Repository;
-
 /**
  * @author Dimitrios Balaouras
- * @version %G%
- * @since %I%
+ * @version 1.0
+ * @since 1.0
  * @copyright Bytecode.gr 2013
  * 
  */
-@Repository
-public class EntryRepository extends BaseRepository<Entry> implements
-		IEntryRepository {
-
-	@PersistenceContext
-	private EntityManager em;
+public interface EntryRepository extends Repository<Entry> {
 
 	/**
-	 * Default arg-less constructor
-	 */
-	public EntryRepository() {
-
-		// tell the base class which entity we are managing
-		super(Entry.class);
-	}
-
-	/*
-	 * (non-Javadoc)
+	 * Find an entry given it's name
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.IEntryRepository
-	 * #findEntryByName(java.lang.String)
+	 * @return
 	 */
-	@Override
-	public Entry findEntryByName(String name) {
-		// get a list of the entries
-		Query queryCategory = em.createNamedQuery("Entry.findEntryByName")
-				.setParameter("entryName", name).setParameter("entryStatus", 1);
+	public abstract Entry findEntryByName(String name);
 
-		Entry category = (Entry) queryCategory.getSingleResult();
-
-		return category;
-	}
-
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Find an entry given it's name
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.IEntryRepository
-	 * #findEntryByName(java.lang.String, int)
+	 * @return
 	 */
-	@Override
-	public Entry findEntryByName(String name, int status) {
+	public abstract Entry findEntryByName(String name, int status);
 
-		// find the entry
-		Query queryCategory = em.createNamedQuery("Entry.findEntryByName")
-				.setParameter("entryName", name)
-				.setParameter("entryStatus", status);
-
-		Entry entry = (Entry) queryCategory.getSingleResult();
-
-		return entry;
-	}
-
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Get all entries of a category
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.IEntryRepository
-	 * #getEntries(int, int)
+	 * @return
 	 */
-	@Override
-	public Entries getEntries(Long categoryId, int status) {
+	public abstract Entries getEntries(Long categoryId, int status);
 
-		// get a list of the entries
-		Query queryEntries = em
-				.createNamedQuery("Entry.findEntriesByCategoryId")
-				.setParameter("categoryId", categoryId)
-				.setParameter("entryStatus", status);
-
-		@SuppressWarnings("unchecked")
-		final List<Entry> list = queryEntries.getResultList();
-
-		// create a new Entries model object
-		Entries entries = new Entries(list);
-
-		return entries;
-	}
-
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Find an entry given it's name, status and category name
 	 * 
-	 * @see gr.bytecode.services.visitorphonebook.repositories.IEntryRepository#
-	 * getEntryByNameAndCat(java.lang.String, int)
+	 * @param name
+	 * @param categoryId
+	 * @return
 	 */
-	@Override
-	public Entry getEntryByNameAndCat(String name, Long categoryId) {
-
-		// find the entry
-		Query queryCategory = em
-				.createNamedQuery("Entry.findEntryByNameAndCat")
-				.setParameter("entryName", name)
-				.setParameter("categoryId", categoryId);
-
-		Entry entry = (Entry) queryCategory.getSingleResult();
-
-		return entry;
-	}
+	public abstract Entry getEntryByNameAndCat(String name, Long categoryId);
 
 }

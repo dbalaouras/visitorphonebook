@@ -83,9 +83,8 @@ ${page_title} </c:if></title>
 	rel="stylesheet" />
 <link href="assets/css/bootstrap-docs.css" rel="stylesheet" />
 <link href="assets/css/phonebook.css" rel="stylesheet" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<!-- <script src="http://cleancanvas.herokuapp.com/js/theme.js"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="assets/js/theme.js"></script>
 <script>
 	!function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
