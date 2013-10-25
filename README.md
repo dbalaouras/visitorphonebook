@@ -8,14 +8,14 @@ This version of the project implements a phonebook for Greece, but it should be 
 
 Lastly, the project comes with an Android application which is also open-sourced and accessible via a github [repository](https://github.com/dbalaouras/greece-phonebook-android).
 
-### Few words on how I got started
+### Few words on the purpose of this project
 
 I started the project strictky for educational purposes. Coming from the scripting world of web applications (php, python) and having used Java only for either back-end or desktop applications, I was for years missing a chance to build a complete web application in Java.
 Looking for the options I had to get me started and after experimenting with a few frameworks, Spring MVC got my attention.
 
 The Spring MVC/DI/Security framework, combined with the magnificent Bootstrap front-end framework, the Maven project and github, all together offered a unique web application development experience.
 
-Below is a brief list of the technologies I used for this weekend project:
+Below is a brief list of the technologies there are used in this weekend project:
 * [Spring Framework's](http://www.springframework.org/) technologies
   * Spring MVC
   * Spring DI
