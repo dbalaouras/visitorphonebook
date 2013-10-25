@@ -216,7 +216,7 @@ null}">
 						<li>
 							<div id="promote-twitter">
 								<a href="https://twitter.com/share" class="twitter-share-button"
-									data-url="${developer_url}" data-text="${retweet_message}"
+									data-url="${baseurl}" data-text="${retweet_message}"
 									data-via="${twitter_share_via}"
 									data-related="${twitter_share_via}"
 									data-hashtags="${twitter_share_hashtags}"><spring:message
