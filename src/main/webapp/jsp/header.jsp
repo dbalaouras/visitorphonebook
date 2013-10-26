@@ -177,7 +177,7 @@ btn-navbar" data-toggle="collapse"
 							<c:when test="${pageContext['request'].userPrincipal !=
 null}">
 								<li><a href="logout"><spring:message code="menu.logout" />
-										${principal.username}</a></li>
+										 - ${principal.username}</a></li>
 							</c:when>
 							<c:otherwise>
 								<li><a data-toggle="modal" data-keyboard="true"

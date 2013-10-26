@@ -121,7 +121,6 @@
 <c:if test="${current_page eq \"admin\"}">
 	<script src="assets/js/admin-phonebook.js"></script>
 </c:if>
-
 <script>
 	// Include the UserVoice JavaScript SDK (only needed once on a page)
 	UserVoice = window.UserVoice || [];
@@ -138,6 +137,7 @@
 	// UserVoice Javascript SDK developer documentation:
 	// https://www.uservoice.com/o/javascript-sdk
 	//
+
 	// Set colors
 	UserVoice.push([ 'set', {
 		accent_color : '#448dd6',
@@ -151,13 +151,12 @@
 
 	// Add default trigger to the bottom-right corner of the window:
 	UserVoice.push([ 'addTrigger', {
-		mode : 'contact',
+		mode : 'smartvote',
 		trigger_position : 'bottom-right'
 	} ]);
 
 	// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
 	UserVoice.push([ 'autoprompt', {} ]);
 </script>
-
 </body>
 </html>
