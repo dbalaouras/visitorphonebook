@@ -4,17 +4,28 @@ Visitor Phonebook
 Visitor Phonebook is a web application that that aims to provide quick and easy access on telephone numbers and website addresses of the most essential organisations and services of countries.
 It targets travelers, foreign students but also locals that don't want to search for long to find essential contact information.
 
-I started the project for educational purposes, focusing on the capabilities of a few technologies that interest me:
+This version of the project implements a phonebook for Greece, but it should be easy to create similar web apps for other countries. Browse to [GreecePhonebook.gr](http://greecephonebook.gr/) for a live preview.
+
+Lastly, the project comes with an Android application which is also open-sourced and accessible via a github [repository](https://github.com/dbalaouras/greece-phonebook-android).
+
+### Few words on the purpose of this project
+
+I started the project strictky for educational purposes. Coming from the scripting world of web applications (php, python) and having used Java only for either back-end or desktop applications, I was for years missing a chance to build a complete web application in Java.
+Looking for the options I had to get me started and after experimenting with a few frameworks, Spring MVC got my attention.
+
+The Spring MVC/DI/Security framework, combined with the magnificent Bootstrap front-end framework, the Maven project and github, all together offered a unique web application development experience.
+
+Below is a brief list of the technologies there are used in this weekend project:
 * [Spring Framework's](http://www.springframework.org/) technologies
   * Spring MVC
   * Spring DI
   * Spring Security
+* Twitter's [Bootstrap](http://getbootstrap.com/) front-end framework
 * The [JPA](http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html) project
-* Twitter's [Bootstrap](http://getbootstrap.com/) responsive framework
+* [Hibernate](http://www.hibernate.org/)
+* [Tomcat](http://tomcat.apache.org/) Web Container
+* Git(hub)
 
-This version of the project implements a phonebook for Greece, but it should be easy to create similar web apps for other countries.
-
-Finaly, the project comes with an Android application which is also open-sourced and accessible via a github [repository](https://github.com/dbalaouras/greece-phonebook-android).
 
 ## Dependencies
 
