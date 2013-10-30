@@ -33,7 +33,7 @@
 	</bean>
 
 	<!-- Scan our classes for Spring MVC components -->
-	<context:component-scan base-package="gr.bytecode.services.visitorphonebook.web" />
+	<context:component-scan base-package="gr.bytecode.visitorphonebook.web" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

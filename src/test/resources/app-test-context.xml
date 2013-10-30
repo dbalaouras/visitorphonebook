@@ -19,12 +19,10 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource"
 		p:basename="messages"></bean>
 
-	<bean id="messages"
-		class="gr.bytecode.services.visitorphonebook.services.MessageLoader">
+	<bean id="messages" class="gr.bytecode.visitorphonebook.services.MessageLoader">
 	</bean>
 
-	<bean id="backOfficeService"
-		class="gr.bytecode.services.visitorphonebook.services.BackOfficeService">
+	<bean id="backOfficeService" class="gr.bytecode.visitorphonebook.services.BackOfficeService">
 	</bean>
 
 </beans>

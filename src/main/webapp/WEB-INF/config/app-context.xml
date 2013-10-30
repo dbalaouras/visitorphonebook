@@ -28,7 +28,7 @@
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 
 	<!-- Scan for annotations: -->
-	<context:component-scan base-package="gr.bytecode.services.visitorphonebook" />
+	<context:component-scan base-package="gr.bytecode.visitorphonebook" />
 
 	<!-- Load app configuration (use within beans only) -->
 	<bean id="appconfig"
@@ -60,11 +60,11 @@
 		<jaxrs:providers>
 			<bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
 			<bean
-				class="gr.bytecode.services.visitorphonebook.web.exceptions.BaseExceptionMapper" />
+				class="gr.bytecode.visitorphonebook.web.exceptions.BaseExceptionMapper" />
 			<bean
-				class="gr.bytecode.services.visitorphonebook.web.exceptions.NotFoundExceptionMapper" />
+				class="gr.bytecode.visitorphonebook.web.exceptions.NotFoundExceptionMapper" />
 			<bean
-				class="gr.bytecode.services.visitorphonebook.web.exceptions.DefaultExceptionMapper" />
+				class="gr.bytecode.visitorphonebook.web.exceptions.DefaultExceptionMapper" />
 
 		</jaxrs:providers>
 		<jaxrs:extensionMappings>

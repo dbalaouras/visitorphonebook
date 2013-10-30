@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <jsp:include page="header.jsp" />
@@ -8,7 +9,7 @@
 		<h1 class="jetstrap-highlighted">
 			<spring:message code="app.name" />
 		</h1>
-		<p class="lead">
+		<p class="lead" style="line-height: 36px; padding-top: 20px">
 			<spring:message code="app.intro" />
 		</p>
 		<p class="">

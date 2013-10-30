@@ -27,11 +27,11 @@
 	</authentication-manager>
 
 	<beans:bean id="authenticationSuccessHandler"
-		class="gr.bytecode.services.visitorphonebook.web.security.AuthenticationSuccessHandler">
+		class="gr.bytecode.visitorphonebook.web.security.AuthenticationSuccessHandler">
 	</beans:bean>
 
 	<beans:bean id="authenticationFailureHandler"
-		class="gr.bytecode.services.visitorphonebook.web.security.AuthenticationFailureHandler">
+		class="gr.bytecode.visitorphonebook.web.security.AuthenticationFailureHandler">
 	</beans:bean>
 
 	<beans:bean id="authenticationSuccessHandlerWithoutReferer"

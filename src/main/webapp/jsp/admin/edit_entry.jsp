@@ -25,8 +25,8 @@
 				class="divider">/</span></li>
 			<li><a href="admin/"><spring:message code="menu.admin" /></a><span
 				class="divider">/</span></li>
-			<li class="active"><spring:message code="menu.entries" /><span
-				class="divider">/</span></li>
+			<li><a href="admin/entries"><spring:message
+						code="menu.entries" /></a><span class="divider">/</span></li>
 			<li class="active">${page_title}</li>
 		</ul>
 	</div>
@@ -125,13 +125,18 @@
 
 		</div>
 		<div class="controls">
-			<a a href="admin/entries" class="btn btn-primary"> <spring:message
+			<a href="admin/entries" class="btn btn-primary"> <spring:message
 					code="form.cancel" />
 			</a>
 			<button type="submit" class="btn btn-danger">
 				<spring:message code="form.save" />
 			</button>
 			<form:hidden path="id" />
+			<c:if test="${not empty entry.id}">
+				<a href="admin/entries/add" class="btn btn-success"> <spring:message
+						code="butt.new" />
+				</a>
+			</c:if>
 		</div>
 
 	</form:form>
