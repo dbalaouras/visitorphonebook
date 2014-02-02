@@ -34,7 +34,7 @@ Most dependencies are described in the pom.xml file and maven will take care of 
 
 Additionally, you will need to install a mysql connector on your application container:
 * download the connector directly from [mysql.com](http://dev.mysql.com/downloads/connector/j)
-* place the jar file (which will look like this: mysql-connector-java-5.1.24-bin.jar) in 
+* install the jar file (which will look like this: mysql-connector-java-5.1.24-bin.jar) in your App server (if you are using Tomcat, this is under "$CATALINA_HOME/lib")
 
 Although any web container should work fine, the project has been tested on [Tomcat 7.0](http://tomcat.apache.org/index.html).
 
@@ -51,6 +51,10 @@ After setting up the database (in UTF8), you will need to add a resource to the 
   		url="jdbc:mysql://<host>/<database>?characterEncoding=UTF-8"
   		maxActive="8" />
 
+
+If you are using Tomcat this should give some hints on where to place the above configuration:
+
+*"Tomcat specific resource configuration is entered in the <Context> elements that can be specified in either $CATALINA\_BASE/conf/server.xml or, preferably, the per-web-application context XML file (META-INF/context.xml)”*
 
 
 ## Setup the project in Eclipse
